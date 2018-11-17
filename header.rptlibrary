@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201606072122</property>
+    <property name="units">in</property>
+    <property name="theme">defaultTheme</property>
+    <parameters>
+        <scalar-parameter name="bulan" id="5">
+            <text-property name="promptText">Sila pilih bulan</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList">
+                <structure>
+                    <property name="value">01</property>
+                    <property name="label">Januari</property>
+                </structure>
+                <structure>
+                    <property name="value">02</property>
+                    <property name="label">Februari</property>
+                </structure>
+                <structure>
+                    <property name="value">03</property>
+                    <property name="label">Mac</property>
+                </structure>
+                <structure>
+                    <property name="value">04</property>
+                    <property name="label">April</property>
+                </structure>
+                <structure>
+                    <property name="value">05</property>
+                    <property name="label">Mei</property>
+                </structure>
+                <structure>
+                    <property name="value">06</property>
+                    <property name="label">Jun</property>
+                </structure>
+                <structure>
+                    <property name="value">07</property>
+                    <property name="label">Julai</property>
+                </structure>
+                <structure>
+                    <property name="value">08</property>
+                    <property name="label">Ogos</property>
+                </structure>
+                <structure>
+                    <property name="value">09</property>
+                    <property name="label">September</property>
+                </structure>
+                <structure>
+                    <property name="value">10</property>
+                    <property name="label">Oktober</property>
+                </structure>
+                <structure>
+                    <property name="value">11</property>
+                    <property name="label">November</property>
+                </structure>
+                <structure>
+                    <property name="value">12</property>
+                    <property name="label">Disember</property>
+                </structure>
+            </list-property>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="tahun" id="6">
+            <text-property name="promptText">Sila masukkan tahun (YYYY)</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="javascript">BirtDateTime.year(BirtDateTime.today())</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <themes>
+        <theme name="defaultTheme" id="4"/>
+    </themes>
+    <page-setup>
+        <simple-master-page name="NewSimpleMasterPage" id="3"/>
+    </page-setup>
+</library>
