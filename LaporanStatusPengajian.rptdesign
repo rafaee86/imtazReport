@@ -90,7 +90,7 @@
             </list-property>
             <list-property name="parameters">
                 <structure>
-                    <property name="name">studentPkid</property>
+                    <property name="name">studentIcNo</property>
                     <property name="paramName">studentIcNo</property>
                     <property name="nativeName"></property>
                     <property name="dataType">string</property>
@@ -429,36 +429,43 @@ WHERE
                 <row id="8">
                     <cell id="49">
                         <label id="54">
+                            <property name="fontWeight">bold</property>
                             <text-property name="text">Bil</text-property>
                         </label>
                     </cell>
                     <cell id="9">
                         <label id="12">
+                            <property name="fontWeight">bold</property>
                             <text-property name="text">Status</text-property>
                         </label>
                     </cell>
                     <cell id="11">
                         <label id="10">
+                            <property name="fontWeight">bold</property>
                             <text-property name="text">Kelas</text-property>
                         </label>
                     </cell>
                     <cell id="13">
                         <label id="14">
+                            <property name="fontWeight">bold</property>
                             <text-property name="text">Mula</text-property>
                         </label>
                     </cell>
                     <cell id="15">
                         <label id="16">
+                            <property name="fontWeight">bold</property>
                             <text-property name="text">Hingga</text-property>
                         </label>
                     </cell>
                     <cell id="17">
                         <label id="18">
+                            <property name="fontWeight">bold</property>
                             <text-property name="text">Nama Guru</text-property>
                         </label>
                     </cell>
                     <cell id="19">
                         <label id="20">
+                            <property name="fontWeight">bold</property>
                             <text-property name="text">Catatan</text-property>
                         </label>
                     </cell>

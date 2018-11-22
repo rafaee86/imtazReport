@@ -1,0 +1,750 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201606072122</property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">93</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">93</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">93</property>
+        </structure>
+    </list-property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">120</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">connection.rptlibrary</property>
+            <property name="namespace">connection</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="studentIcNo" id="6">
+            <text-property name="promptText">Sila masukkan No K/P Pelajar</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">0</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="MyDataSource" id="4"
+ extends="connection.MyDataSource"/>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="MyDataSet" id="5">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">PKID</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">PKID</text-property>
+                    <text-property name="heading">PKID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CLASSNAME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">CLASSNAME</text-property>
+                    <text-property name="heading">CLASSNAME</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CLASSCATEGORY</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">CLASSCATEGORY</text-property>
+                    <text-property name="heading">CLASSCATEGORY</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">OFFENDEDDATE</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">OFFENDEDDATE</text-property>
+                    <text-property name="heading">OFFENDEDDATE</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ACTIONDATE</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">ACTIONDATE</text-property>
+                    <text-property name="heading">ACTIONDATE</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ACTIONDESCRIPTION</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">ACTIONDESCRIPTION</text-property>
+                    <text-property name="heading">ACTIONDESCRIPTION</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">REMARKS</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">REMARKS</text-property>
+                    <text-property name="heading">REMARKS</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">studentIcNo</property>
+                    <property name="paramName">studentIcNo</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">PKID</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">CLASSNAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">CLASSCATEGORY</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">OFFENDEDDATE</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">ACTIONDATE</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">ACTIONDESCRIPTION</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">REMARKS</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">MyDataSource</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">PKID</property>
+                    <property name="nativeName">pkid</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">CLASSNAME</property>
+                    <property name="nativeName">name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">CLASSCATEGORY</property>
+                    <property name="nativeName">CLASSCATEGORY</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">OFFENDEDDATE</property>
+                    <property name="nativeName">offended_date</property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">ACTIONDATE</property>
+                    <property name="nativeName">action_date</property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">ACTIONDESCRIPTION</property>
+                    <property name="nativeName">action_description</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">REMARKS</property>
+                    <property name="nativeName">remarks</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT 
+	 DR.PKID AS PKID,
+	 CRD.NAME AS CLASSNAME,
+	 '' AS CLASSCATEGORY,
+	 DR.OFFENDED_DATE AS OFFENDEDDATE,
+	 DR.ACTION_DATE AS ACTIONDATE,
+	 DR.ACTION_DESCRIPTION AS ACTIONDESCRIPTION,
+	 DR.REMARKS AS REMARKS 
+FROM 
+	RECORDS R 
+	INNER JOIN STUDENT S ON R.STUDENT = S.PKID 
+	INNER JOIN CLASS_ROOM_DETAIL CRD ON R.CLASS_ROOM_DETAIL = CRD.PKID 
+	INNER JOIN DISCIPLINE_RECORD DR ON DR.RECORDS = R.PKID
+WHERE 
+	S.IC_NO = ?]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>pkid</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>PKID</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PKID</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>name</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>CLASSNAME</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>CLASSNAME</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>CLASSCATEGORY</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>CLASSCATEGORY</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>CLASSCATEGORY</design:label>
+            <design:formattingHints>
+              <design:displaySize>0</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>offended_date</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>OFFENDEDDATE</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>OFFENDEDDATE</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>action_date</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ACTIONDATE</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ACTIONDATE</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>action_description</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ACTIONDESCRIPTION</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ACTIONDESCRIPTION</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>remarks</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>REMARKS</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>REMARKS</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="InnerDataSet" id="93">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">OFFENDEDDESCRIPTION</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">OFFENDEDDESCRIPTION</text-property>
+                    <text-property name="heading">OFFENDEDDESCRIPTION</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">DiscRecordPkid</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <expression name="defaultValue" type="javascript">0</expression>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">OFFENDEDDESCRIPTION</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">MyDataSource</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">OFFENDEDDESCRIPTION</property>
+                    <property name="nativeName">description</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT 
+	D.DESCRIPTION AS OFFENDEDDESCRIPTION
+FROM 
+	DISCIPLINE_RECORD_ITEM DRI 
+	INNER JOIN DISCIPLINE D ON D.PKID = DRI.DISCIPLINE 
+WHERE 
+	DRI.DISCIPLINE_RECORD = ?]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>description</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>200</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>OFFENDEDDESCRIPTION</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>OFFENDEDDESCRIPTION</design:label>
+            <design:formattingHints>
+              <design:displaySize>200</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="orientation">landscape</property>
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <text id="115">
+            <property name="fontSize">14pt</property>
+            <property name="fontWeight">bold</property>
+            <property name="textAlign">center</property>
+            <property name="contentType">auto</property>
+            <text-property name="content"><![CDATA[Maklumat Salahlaku/Tatatertib]]></text-property>
+        </text>
+        <label id="116"/>
+        <table id="53">
+            <property name="dataSet">MyDataSet</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">CLASSNAME</property>
+                    <text-property name="displayName">CLASSNAME</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["CLASSNAME"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">CLASSCATEGORY</property>
+                    <text-property name="displayName">CLASSCATEGORY</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["CLASSCATEGORY"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">OFFENDEDDATE</property>
+                    <text-property name="displayName">OFFENDEDDATE</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["OFFENDEDDATE"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">ACTIONDATE</property>
+                    <text-property name="displayName">ACTIONDATE</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ACTIONDATE"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">ACTIONDESCRIPTION</property>
+                    <text-property name="displayName">ACTIONDESCRIPTION</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ACTIONDESCRIPTION"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">REMARKS</property>
+                    <text-property name="displayName">REMARKS</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["REMARKS"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">PKID</property>
+                    <text-property name="displayName">PKID</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["PKID"]</expression>
+                    <property name="dataType">integer</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">bil</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">RUNNINGCOUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["PKID"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="112">
+                <property name="width">3%</property>
+            </column>
+            <column id="87">
+                <property name="width">7%</property>
+            </column>
+            <column id="88">
+                <property name="width">12%</property>
+            </column>
+            <column id="89">
+                <property name="width">12%</property>
+            </column>
+            <column id="97">
+                <property name="width">20%</property>
+            </column>
+            <column id="90">
+                <property name="width">12%</property>
+            </column>
+            <column id="91">
+                <property name="width">20%</property>
+            </column>
+            <column id="92">
+                <property name="width">15%</property>
+            </column>
+            <header>
+                <row id="54">
+                    <cell id="109">
+                        <label id="113">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Bil</text-property>
+                        </label>
+                    </cell>
+                    <cell id="55">
+                        <label id="58">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Status</text-property>
+                        </label>
+                    </cell>
+                    <cell id="57">
+                        <label id="56">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Kelas</text-property>
+                        </label>
+                    </cell>
+                    <cell id="59">
+                        <label id="60">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Tarikh Kesalahan</text-property>
+                        </label>
+                    </cell>
+                    <cell id="94">
+                        <label id="108">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Kesalahan</text-property>
+                        </label>
+                    </cell>
+                    <cell id="61">
+                        <label id="62">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Tarikh Tindakan</text-property>
+                        </label>
+                    </cell>
+                    <cell id="63">
+                        <label id="64">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Tindakan</text-property>
+                        </label>
+                    </cell>
+                    <cell id="65">
+                        <label id="66">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Catatan</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="67">
+                    <cell id="110">
+                        <data id="114">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">bil</property>
+                        </data>
+                    </cell>
+                    <cell id="68">
+                        <data id="71">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">CLASSCATEGORY</property>
+                        </data>
+                    </cell>
+                    <cell id="70">
+                        <data id="69">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">CLASSNAME</property>
+                        </data>
+                    </cell>
+                    <cell id="72">
+                        <data id="73">
+                            <structure name="dateTimeFormat">
+                                <property name="category">Short Date</property>
+                                <property name="pattern">Short Date</property>
+                            </structure>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">OFFENDEDDATE</property>
+                        </data>
+                    </cell>
+                    <cell id="95">
+                        <table id="98">
+                            <property name="textAlign">left</property>
+                            <property name="dataSet">InnerDataSet</property>
+                            <list-property name="paramBindings">
+                                <structure>
+                                    <property name="paramName">DiscRecordPkid</property>
+                                    <simple-property-list name="expression">
+                                        <value type="javascript">row["PKID"]</value>
+                                    </simple-property-list>
+                                </structure>
+                            </list-property>
+                            <list-property name="boundDataColumns">
+                                <structure>
+                                    <property name="name">OFFENDEDDESCRIPTION</property>
+                                    <text-property name="displayName">OFFENDEDDESCRIPTION</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["OFFENDEDDESCRIPTION"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                            </list-property>
+                            <column id="107"/>
+                            <detail>
+                                <row id="102">
+                                    <cell id="103">
+                                        <data id="104">
+                                            <property name="resultSetColumn">OFFENDEDDESCRIPTION</property>
+                                        </data>
+                                    </cell>
+                                </row>
+                            </detail>
+                        </table>
+                    </cell>
+                    <cell id="74">
+                        <data id="75">
+                            <structure name="dateTimeFormat">
+                                <property name="category">Short Date</property>
+                                <property name="pattern">Short Date</property>
+                            </structure>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">ACTIONDATE</property>
+                        </data>
+                    </cell>
+                    <cell id="76">
+                        <data id="77">
+                            <property name="resultSetColumn">ACTIONDESCRIPTION</property>
+                        </data>
+                    </cell>
+                    <cell id="78">
+                        <data id="79">
+                            <property name="resultSetColumn">REMARKS</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="80">
+                    <cell id="111"/>
+                    <cell id="81"/>
+                    <cell id="82"/>
+                    <cell id="83"/>
+                    <cell id="96"/>
+                    <cell id="84"/>
+                    <cell id="85"/>
+                    <cell id="86"/>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>
