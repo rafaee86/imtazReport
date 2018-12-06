@@ -14,6 +14,18 @@
             <property name="name">rowFetchSize</property>
             <property name="id">5</property>
         </structure>
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">132</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">132</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">132</property>
+        </structure>
     </list-property>
     <property name="units">in</property>
     <property name="iconFile">/templates/blank_report.gif</property>
@@ -59,7 +71,7 @@
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="MyDataSource" id="4"
- extends="connection.MyDataSource"/>
+ extends="connection.MyDataSource"></oda-data-source>
     </data-sources>
     <data-sets>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="MyDataSet" id="5">
@@ -248,6 +260,228 @@ ORDER BY DA.DATE, DRI.SEQUENCE]]></xml-property>
   </design:ResultSets>
 </model:DesignValues>]]></xml-property>
         </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="ProfileDataSet" id="132">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">STUDENTNO</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">STUDENTNO</text-property>
+                    <text-property name="heading">STUDENTNO</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">NAME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">NAME</text-property>
+                    <text-property name="heading">NAME</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ICNO</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">ICNO</text-property>
+                    <text-property name="heading">ICNO</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CLASSROOM</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">CLASSROOM</text-property>
+                    <text-property name="heading">CLASSROOM</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TEACHER</property>
+                    <text-property name="displayName">TEACHER</text-property>
+                    <text-property name="heading">TEACHER</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">nopelajar</property>
+                    <property name="paramName">nopelajar</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">STUDENTNO</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">NAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">ICNO</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">CLASSROOM</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">TEACHER</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">MyDataSource</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">STUDENTNO</property>
+                    <property name="nativeName">student_no</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">NAME</property>
+                    <property name="nativeName">name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">ICNO</property>
+                    <property name="nativeName">ic_no</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">CLASSROOM</property>
+                    <property name="nativeName">CLASSROOM</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">TEACHER</property>
+                    <property name="nativeName">TEACHER</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT 
+	S.STUDENT_NO AS STUDENTNO,
+	S.NAME AS NAME, 
+	S.IC_NO AS ICNO,
+	CONCAT(CRD.CLASS_ROOM,' ',CRD.NAME) CLASSROOM, 
+	CONCAT(T.SALUTATION,' ',T.NAME) TEACHER  
+FROM 
+	STUDENT S 
+	INNER JOIN RECORDS R ON R.STUDENT = S.PKID 
+	INNER JOIN CLASS_ROOM_DETAIL CRD ON R.CLASS_ROOM_DETAIL = CRD.PKID 
+	INNER JOIN TEACHER T ON T.PKID = CRD.TEACHER  
+WHERE 
+	R.STATUS_FLAG = TRUE 
+	AND S.STUDENT_NO = ?]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>student_no</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>STUDENTNO</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>STUDENTNO</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>name</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>250</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>NAME</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>NAME</design:label>
+            <design:formattingHints>
+              <design:displaySize>250</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>ic_no</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ICNO</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ICNO</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>CLASSROOM</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>71</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>CLASSROOM</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>CLASSROOM</design:label>
+            <design:formattingHints>
+              <design:displaySize>71</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
     </data-sets>
     <cubes>
         <tabular-cube name="MainDataCube" id="9">
@@ -340,6 +574,172 @@ ORDER BY DA.DATE, DRI.SEQUENCE]]></xml-property>
         </simple-master-page>
     </page-setup>
     <body>
+        <label id="130">
+            <property name="fontSize">14pt</property>
+            <property name="fontWeight">bold</property>
+            <property name="textAlign">center</property>
+            <text-property name="text">Laporan Status Aktiviti Rekod Bulanan</text-property>
+        </label>
+        <label id="131"/>
+        <grid id="157">
+            <property name="width">60%</property>
+            <property name="dataSet">ProfileDataSet</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">STUDENTNO</property>
+                    <text-property name="displayName">STUDENTNO</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["STUDENTNO"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">NAME</property>
+                    <text-property name="displayName">NAME</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["NAME"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">ICNO</property>
+                    <text-property name="displayName">ICNO</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ICNO"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">CLASSROOM</property>
+                    <text-property name="displayName">CLASSROOM</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["CLASSROOM"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TEACHER</property>
+                    <text-property name="displayName">TEACHER</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TEACHER"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <column id="158">
+                <property name="width">30%</property>
+            </column>
+            <column id="159">
+                <property name="width">5%</property>
+            </column>
+            <column id="160">
+                <property name="width">65%</property>
+            </column>
+            <row id="161">
+                <cell id="162">
+                    <label id="185">
+                        <text-property name="text">No Pelajar</text-property>
+                    </label>
+                </cell>
+                <cell id="163">
+                    <label id="181">
+                        <property name="textAlign">center</property>
+                        <text-property name="text">:</text-property>
+                    </label>
+                </cell>
+                <cell id="164">
+                    <data id="177">
+                        <property name="textAlign">left</property>
+                        <property name="resultSetColumn">STUDENTNO</property>
+                    </data>
+                </cell>
+            </row>
+            <row id="165">
+                <cell id="166">
+                    <label id="186">
+                        <text-property name="text">Nama</text-property>
+                    </label>
+                </cell>
+                <cell id="167">
+                    <label id="182">
+                        <property name="textAlign">center</property>
+                        <text-property name="text">:</text-property>
+                    </label>
+                </cell>
+                <cell id="168">
+                    <data id="178">
+                        <property name="textAlign">left</property>
+                        <property name="resultSetColumn">NAME</property>
+                    </data>
+                </cell>
+            </row>
+            <row id="169">
+                <cell id="170">
+                    <label id="187">
+                        <text-property name="text">No K/P</text-property>
+                    </label>
+                </cell>
+                <cell id="171">
+                    <label id="183">
+                        <property name="textAlign">center</property>
+                        <text-property name="text">:</text-property>
+                    </label>
+                </cell>
+                <cell id="172">
+                    <data id="179">
+                        <property name="textAlign">left</property>
+                        <property name="resultSetColumn">ICNO</property>
+                    </data>
+                </cell>
+            </row>
+            <row id="173">
+                <cell id="174">
+                    <label id="188">
+                        <text-property name="text">Kelas</text-property>
+                    </label>
+                </cell>
+                <cell id="175">
+                    <label id="184">
+                        <property name="textAlign">center</property>
+                        <text-property name="text">:</text-property>
+                    </label>
+                </cell>
+                <cell id="176">
+                    <data id="180">
+                        <property name="textAlign">left</property>
+                        <property name="resultSetColumn">CLASSROOM</property>
+                    </data>
+                </cell>
+            </row>
+            <row id="195">
+                <cell id="196">
+                    <label id="202">
+                        <text-property name="text">Guru</text-property>
+                    </label>
+                </cell>
+                <cell id="197">
+                    <label id="203">
+                        <property name="textAlign">center</property>
+                        <text-property name="text">:</text-property>
+                    </label>
+                </cell>
+                <cell id="198">
+                    <data id="204">
+                        <property name="resultSetColumn">TEACHER</property>
+                    </data>
+                </cell>
+            </row>
+            <row id="191">
+                <cell id="192">
+                    <label id="199">
+                        <text-property name="text">Bulan/Tahun</text-property>
+                    </label>
+                </cell>
+                <cell id="193">
+                    <label id="200">
+                        <property name="textAlign">center</property>
+                        <text-property name="text">:</text-property>
+                    </label>
+                </cell>
+                <cell id="194">
+                    <text-data id="201">
+                        <expression name="valueExpr">params["bulan"].value + " " + params["tahun"].value</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
+        </grid>
+        <label id="189"/>
         <extended-item extensionName="Crosstab" extensionVersion="3.7.0" id="21">
             <property name="cube">MainDataCube</property>
             <property name="measures">
@@ -537,7 +937,7 @@ ORDER BY DA.DATE, DRI.SEQUENCE]]></xml-property>
                             <property name="content">
                                 <text-data id="125">
                                     <property name="textAlign">center</property>
-                                    <expression name="valueExpr">data["DISCIPLINEDESC1_DisciplineDescGroup/DISCIPLINEDESC"] + (data["DISCIPLINEDESC1_DisciplineDescGroup/DISCIPLINEDESC"] >= 11 ? " (Tidak Dibenarkan Outing)" : "")</expression>
+                                    <expression name="valueExpr">data["DISCIPLINEDESC1_DisciplineDescGroup/DISCIPLINEDESC"]</expression>
                                     <property name="contentType">html</property>
                                 </text-data>
                             </property>
@@ -560,10 +960,12 @@ ORDER BY DA.DATE, DRI.SEQUENCE]]></xml-property>
                             <property name="borderBottomStyle">double</property>
                             <property name="borderBottomWidth">medium</property>
                             <property name="content">
-                                <data id="128">
+                                <text-data id="190">
+                                    <property name="fontWeight">bold</property>
                                     <property name="textAlign">center</property>
-                                    <property name="resultSetColumn">DISCIPLINEDESC1</property>
-                                </data>
+                                    <expression name="valueExpr">data["DISCIPLINEDESC1"] + (data["DISCIPLINEDESC1"] >= 11 ? " (Tidak Dibenarkan Outing)" : "")</expression>
+                                    <property name="contentType">html</property>
+                                </text-data>
                             </property>
                         </extended-item>
                     </property>
