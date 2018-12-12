@@ -83,7 +83,7 @@
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="MyDataSource" id="4"
- extends="connection.MyDataSource"></oda-data-source>
+ extends="connection.MyDataSource"/>
     </data-sources>
     <data-sets>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="MyDataSet" id="5">

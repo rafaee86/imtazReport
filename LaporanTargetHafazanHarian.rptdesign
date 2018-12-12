@@ -1,0 +1,764 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201606072122</property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">7</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">7</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">7</property>
+        </structure>
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">61</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">61</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">61</property>
+        </structure>
+    </list-property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">120</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">header.rptlibrary</property>
+            <property name="namespace">header</property>
+        </structure>
+        <structure>
+            <property name="fileName">connection.rptlibrary</property>
+            <property name="namespace">connection</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="bulan" id="4" extends="header.bulan">
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+        </scalar-parameter>
+        <scalar-parameter name="tahun" id="5" extends="header.tahun">
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+        </scalar-parameter>
+        <scalar-parameter name="kelas" id="62">
+            <property name="valueType">dynamic</property>
+            <property name="isRequired">true</property>
+            <property name="dataSetName">CBDataSet</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["PKID"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["FULLNAME"]</expression>
+            <expression name="sortByColumn">dataSetRow["FULLNAME"]</expression>
+            <property name="sortDirection">asc</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">false</property>
+            <property name="fixedOrder">false</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="MyDataSource" id="6"
+ extends="connection.MyDataSource">
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://localhost:3306/imtaz?autoReconnect=true</property>
+            <property name="odaUser">root</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">c2VjcmV0</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="MyDataSet" id="7">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">FULLNAME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">FULLNAME</text-property>
+                    <text-property name="heading">FULLNAME</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">DAILY_TARGET</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">DAILY_TARGET</text-property>
+                    <text-property name="heading">DAILY_TARGET</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">START_PAGE</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">START_PAGE</text-property>
+                    <text-property name="heading">START_PAGE</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">LAST_PAGE</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">LAST_PAGE</text-property>
+                    <text-property name="heading">LAST_PAGE</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TOTAL_DAILY_TARGET</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TOTAL_DAILY_TARGET</text-property>
+                    <text-property name="heading">TOTAL_DAILY_TARGET</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TOTAL_MEMORIZE</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TOTAL_MEMORIZE</text-property>
+                    <text-property name="heading">TOTAL_MEMORIZE</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TOTAL_BALANCE</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TOTAL_BALANCE</text-property>
+                    <text-property name="heading">TOTAL_BALANCE</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">tahun</property>
+                    <property name="paramName">tahun</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">bulan</property>
+                    <property name="paramName">bulan</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">kelas</property>
+                    <property name="paramName">kelas</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">3</property>
+                    <expression name="defaultValue" type="javascript">0</expression>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">FULLNAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">DAILY_TARGET</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">START_PAGE</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">LAST_PAGE</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">TOTAL_DAILY_TARGET</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">TOTAL_MEMORIZE</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">TOTAL_BALANCE</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">MyDataSource</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">FULLNAME</property>
+                    <property name="nativeName">name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">DAILY_TARGET</property>
+                    <property name="nativeName">daily_target</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">START_PAGE</property>
+                    <property name="nativeName">start_page</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">LAST_PAGE</property>
+                    <property name="nativeName">last_page</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">TOTAL_DAILY_TARGET</property>
+                    <property name="nativeName">total_daily_target</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">TOTAL_MEMORIZE</property>
+                    <property name="nativeName">total_memorize</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">TOTAL_BALANCE</property>
+                    <property name="nativeName">total_balance</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT 
+	S.NAME AS FULLNAME,
+	MT.DAILY_TARGET,
+	MT.START_PAGE,
+	MT.LAST_PAGE,
+	MT.TOTAL_DAILY_TARGET, 
+	MT.TOTAL_MEMORIZE,
+	MT.TOTAL_BALANCE 
+FROM 
+	MEMORIZE_TARGET MT 
+	INNER JOIN RECORDS R ON MT.RECORDS = R.PKID 
+	INNER JOIN STUDENT S ON R.STUDENT = S.PKID 
+	INNER JOIN CLASS_ROOM_DETAIL CRD ON R.CLASS_ROOM_DETAIL = CRD.PKID
+WHERE 
+	R.STATUS_FLAG = TRUE 
+	AND CRD.CLASS_ROOM = 'HAFAZAN' 
+	AND MT.YEAR = ? 
+	AND MT.MONTH = ? 	 
+	AND CRD.PKID = ?]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>name</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>250</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>FULLNAME</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>FULLNAME</design:label>
+            <design:formattingHints>
+              <design:displaySize>250</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>daily_target</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>DAILY_TARGET</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>DAILY_TARGET</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>start_page</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>START_PAGE</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>START_PAGE</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>last_page</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>LAST_PAGE</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>LAST_PAGE</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>total_daily_target</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>TOTAL_DAILY_TARGET</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TOTAL_DAILY_TARGET</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>total_memorize</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>TOTAL_MEMORIZE</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TOTAL_MEMORIZE</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>total_balance</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>TOTAL_BALANCE</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TOTAL_BALANCE</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="CBDataSet" id="61">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">PKID</property>
+                    <text-property name="displayName">PKID</text-property>
+                    <text-property name="heading">PKID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">FULLNAME</property>
+                    <text-property name="displayName">FULLNAME</text-property>
+                    <text-property name="heading">FULLNAME</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">PKID</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">FULLNAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">MyDataSource</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">PKID</property>
+                    <property name="nativeName">pkid</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">FULLNAME</property>
+                    <property name="nativeName">name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT 
+	CRD.PKID, 
+	CRD.NAME AS FULLNAME 
+FROM 
+	CLASS_ROOM_DETAIL CRD 
+WHERE 
+	CRD.STATUS_FLAG = TRUE 
+	AND CRD.CLASS_ROOM = 'HAFAZAN'
+ORDER BY 
+	CRD.NAME ASC]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>pkid</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>PKID</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PKID</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>name</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>FULLNAME</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>FULLNAME</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="type">a4</property>
+            <property name="orientation">landscape</property>
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <label id="64">
+            <property name="fontSize">14pt</property>
+            <property name="fontWeight">bold</property>
+            <property name="textAlign">center</property>
+            <text-property name="text">Laporan Hafazan Harian Pelajar</text-property>
+        </label>
+        <label id="65"/>
+        <table id="9">
+            <property name="dataSet">MyDataSet</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">FULLNAME</property>
+                    <text-property name="displayName">FULLNAME</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["FULLNAME"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">DAILY_TARGET</property>
+                    <text-property name="displayName">DAILY_TARGET</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["DAILY_TARGET"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">START_PAGE</property>
+                    <text-property name="displayName">START_PAGE</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["START_PAGE"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">LAST_PAGE</property>
+                    <text-property name="displayName">LAST_PAGE</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["LAST_PAGE"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">TOTAL_DAILY_TARGET</property>
+                    <text-property name="displayName">TOTAL_DAILY_TARGET</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TOTAL_DAILY_TARGET"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TOTAL_MEMORIZE</property>
+                    <text-property name="displayName">TOTAL_MEMORIZE</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TOTAL_MEMORIZE"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TOTAL_BALANCE</property>
+                    <text-property name="displayName">TOTAL_BALANCE</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TOTAL_BALANCE"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">bil</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">RUNNINGCOUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["FULLNAME"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="58">
+                <property name="width">5%</property>
+            </column>
+            <column id="48">
+                <property name="width">22%</property>
+            </column>
+            <column id="49">
+                <property name="width">12%</property>
+            </column>
+            <column id="50">
+                <property name="width">12%</property>
+            </column>
+            <column id="51">
+                <property name="width">12%</property>
+            </column>
+            <column id="52">
+                <property name="width">12%</property>
+            </column>
+            <column id="53">
+                <property name="width">12%</property>
+            </column>
+            <column id="54">
+                <property name="width">12%</property>
+            </column>
+            <header>
+                <row id="10">
+                    <cell id="55">
+                        <label id="59">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Bil</text-property>
+                        </label>
+                    </cell>
+                    <cell id="11">
+                        <label id="12">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Nama</text-property>
+                        </label>
+                    </cell>
+                    <cell id="13">
+                        <label id="14">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Target Harian</text-property>
+                        </label>
+                    </cell>
+                    <cell id="15">
+                        <label id="16">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">M/S Mula</text-property>
+                        </label>
+                    </cell>
+                    <cell id="17">
+                        <label id="18">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">M/S Akhir</text-property>
+                        </label>
+                    </cell>
+                    <cell id="19">
+                        <label id="20">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Jumlah Target</text-property>
+                        </label>
+                    </cell>
+                    <cell id="21">
+                        <label id="22">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Jumlah Hafazan</text-property>
+                        </label>
+                    </cell>
+                    <cell id="23">
+                        <label id="24">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Baki</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="25">
+                    <cell id="56">
+                        <data id="60">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">bil</property>
+                        </data>
+                    </cell>
+                    <cell id="26">
+                        <data id="27">
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">FULLNAME</property>
+                        </data>
+                    </cell>
+                    <cell id="28">
+                        <data id="29">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">DAILY_TARGET</property>
+                        </data>
+                    </cell>
+                    <cell id="30">
+                        <data id="31">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">START_PAGE</property>
+                        </data>
+                    </cell>
+                    <cell id="32">
+                        <data id="33">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">LAST_PAGE</property>
+                        </data>
+                    </cell>
+                    <cell id="34">
+                        <data id="35">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">TOTAL_DAILY_TARGET</property>
+                        </data>
+                    </cell>
+                    <cell id="36">
+                        <data id="37">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">TOTAL_MEMORIZE</property>
+                        </data>
+                    </cell>
+                    <cell id="38">
+                        <data id="39">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">TOTAL_BALANCE</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="40">
+                    <cell id="57"/>
+                    <cell id="41"/>
+                    <cell id="42"/>
+                    <cell id="43"/>
+                    <cell id="44"/>
+                    <cell id="45"/>
+                    <cell id="46"/>
+                    <cell id="47"/>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>
