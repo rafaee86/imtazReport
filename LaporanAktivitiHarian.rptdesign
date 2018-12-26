@@ -89,6 +89,12 @@
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="MyDataSet" id="5">
             <list-property name="columnHints">
                 <structure>
+                    <property name="columnName">SEQUENCE</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">SEQUENCE</text-property>
+                    <text-property name="heading">SEQUENCE</text-property>
+                </structure>
+                <structure>
                     <property name="columnName">TRANSDATE</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">TRANSDATE</text-property>
@@ -143,16 +149,21 @@
                 <list-property name="resultSet">
                     <structure>
                         <property name="position">1</property>
+                        <property name="name">SEQUENCE</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
                         <property name="name">TRANSDATE</property>
                         <property name="dataType">date</property>
                     </structure>
                     <structure>
-                        <property name="position">2</property>
+                        <property name="position">3</property>
                         <property name="name">ITEMDESC</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">3</property>
+                        <property name="position">4</property>
                         <property name="name">DISCIPLINEDESC</property>
                         <property name="dataType">string</property>
                     </structure>
@@ -162,20 +173,27 @@
             <list-property name="resultSet">
                 <structure>
                     <property name="position">1</property>
+                    <property name="name">SEQUENCE</property>
+                    <property name="nativeName">sequence</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
                     <property name="name">TRANSDATE</property>
                     <property name="nativeName">TRANSDATE</property>
                     <property name="dataType">date</property>
                     <property name="nativeDataType">91</property>
                 </structure>
                 <structure>
-                    <property name="position">2</property>
+                    <property name="position">3</property>
                     <property name="name">ITEMDESC</property>
                     <property name="nativeName">description</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">3</property>
+                    <property name="position">4</property>
                     <property name="name">DISCIPLINEDESC</property>
                     <property name="nativeName">DISCIPLINEDESC</property>
                     <property name="dataType">string</property>
@@ -183,6 +201,7 @@
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[SELECT 
+	DRI.SEQUENCE,
 	DATE(DA.DATE) AS TRANSDATE,
 	DRI.DESCRIPTION AS ITEMDESC,
 	CONCAT('(',DRD.CODE,') ',DRD.DESCRIPTION) AS DISCIPLINEDESC 
@@ -572,6 +591,10 @@ WHERE
                     <property name="hierarchies">
                         <tabular-hierarchy name="NewTabularHierarchy" id="15">
                             <property name="levels">
+                                <tabular-level name="SEQUENCE" id="264">
+                                    <property name="dataType">integer</property>
+                                    <property name="columnName">SEQUENCE</property>
+                                </tabular-level>
                                 <tabular-level name="ITEMDESC" id="16">
                                     <property name="dataType">string</property>
                                     <property name="columnName">ITEMDESC</property>
@@ -903,10 +926,29 @@ WHERE
                         <extended-item extensionName="DimensionView" id="24">
                             <property name="dimension">ItemDescGroup</property>
                             <property name="levels">
-                                <extended-item extensionName="LevelView" name="NewLevel View" id="25">
-                                    <property name="level">ItemDescGroup/ITEMDESC</property>
+                                <extended-item extensionName="LevelView" name="NewLevel View3" id="265">
+                                    <property name="level">ItemDescGroup/SEQUENCE</property>
                                     <property name="pageBreakBefore">auto</property>
                                     <property name="pageBreakAfter">auto</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="266">
+                                            <property name="content">
+                                                <data name="SEQUENCE" id="268">
+                                                    <list-property name="visibility">
+                                                        <structure>
+                                                            <property name="format">all</property>
+                                                            <expression name="valueExpr" type="javascript">true</expression>
+                                                        </structure>
+                                                    </list-property>
+                                                    <property name="resultSetColumn">SEQUENCE</property>
+                                                </data>
+                                            </property>
+                                        </extended-item>
+                                    </property>
+                                    <property name="pageBreakInterval">6</property>
+                                </extended-item>
+                                <extended-item extensionName="LevelView" name="NewLevel View" id="25">
+                                    <property name="level">ItemDescGroup/ITEMDESC</property>
                                     <property name="member">
                                         <extended-item extensionName="CrosstabCell" id="26">
                                             <property name="content">
@@ -925,7 +967,6 @@ WHERE
                                             <property name="borderRightWidth">thin</property>
                                         </extended-item>
                                     </property>
-                                    <property name="pageBreakInterval">6</property>
                                 </extended-item>
                             </property>
                         </extended-item>
@@ -933,6 +974,7 @@ WHERE
                 </extended-item>
             </property>
             <property name="header">
+                <extended-item extensionName="CrosstabCell" id="267"/>
                 <extended-item extensionName="CrosstabCell" id="41">
                     <property name="content">
                         <label id="44">
@@ -959,6 +1001,7 @@ WHERE
                     <property name="borderRightWidth">thin</property>
                 </extended-item>
             </property>
+            <property name="pageBreakAfter">always</property>
             <list-property name="boundDataColumns">
                 <structure>
                     <property name="name">ITEMDESC</property>
@@ -994,6 +1037,11 @@ WHERE
                             <expression name="value" type="javascript">measure["DISCIPLINEDESC"]</expression>
                         </structure>
                     </list-property>
+                </structure>
+                <structure>
+                    <property name="name">SEQUENCE</property>
+                    <expression name="expression">dimension["ItemDescGroup"]["SEQUENCE"]</expression>
+                    <property name="dataType">integer</property>
                 </structure>
             </list-property>
         </extended-item>
