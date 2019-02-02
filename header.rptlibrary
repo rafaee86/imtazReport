@@ -3,6 +3,12 @@
     <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201606072122</property>
     <property name="units">in</property>
     <property name="theme">defaultTheme</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">connection.rptlibrary</property>
+            <property name="namespace">connection</property>
+        </structure>
+    </list-property>
     <parameters>
         <scalar-parameter name="bulan" id="5">
             <text-property name="promptText">Sila pilih bulan</text-property>
@@ -99,7 +105,230 @@
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
+        <scalar-parameter name="classRoom" id="8">
+            <text-property name="promptText">Sila pilih kelas</text-property>
+            <property name="valueType">dynamic</property>
+            <property name="dataSetName">MainDataSet</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["PKID"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["CLASSCATEGORY"]+" "+dataSetRow["CLASSNAME"]</expression>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">false</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
     </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="MyDataSource" id="9"
+ extends="connection.MyDataSource">
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://localhost:3306/imtaz?autoReconnect=true</property>
+            <property name="odaUser">root</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">IVMzY3JldDEyMzQ=</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="MainDataSet" id="10">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">_ORDER</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">_ORDER</text-property>
+                    <text-property name="heading">_ORDER</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PKID</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">PKID</text-property>
+                    <text-property name="heading">PKID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CLASSCATEGORY</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">CLASSCATEGORY</text-property>
+                    <text-property name="heading">CLASSCATEGORY</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CLASSNAME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">CLASSNAME</text-property>
+                    <text-property name="heading">CLASSNAME</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">_ORDER</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">PKID</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">CLASSCATEGORY</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">CLASSNAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">MyDataSource</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">_ORDER</property>
+                    <property name="nativeName">_ORDER</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">PKID</property>
+                    <property name="nativeName">pkid</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">CLASSCATEGORY</property>
+                    <property name="nativeName">class_room</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">CLASSNAME</property>
+                    <property name="nativeName">CLASSNAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT 
+	CASE CRD.CLASS_ROOM 
+	WHEN 'IQRA' THEN 1
+	WHEN 'HAFAZAN' THEN 2 
+	WHEN 'KITAB' THEN 3 
+	ELSE 0 END _ORDER,
+	CRD.PKID,
+	CRD.CLASS_ROOM CLASSCATEGORY, 
+	CONCAT(CRD.NAME,' - (',T.SALUTATION,' ',T.NAME,')') CLASSNAME 
+FROM 
+	CLASS_ROOM_DETAIL CRD 
+	INNER JOIN TEACHER T ON CRD.TEACHER = T.PKID 
+WHERE 
+	CRD.STATUS_FLAG IS TRUE 
+ORDER BY 
+	_ORDER,
+	CRD.NAME]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>_ORDER</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>_ORDER</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>_ORDER</design:label>
+            <design:formattingHints>
+              <design:displaySize>0</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>pkid</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>PKID</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PKID</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>class_room</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>CLASSCATEGORY</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>CLASSCATEGORY</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>CLASSNAME</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>166</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>CLASSNAME</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>CLASSNAME</design:label>
+            <design:formattingHints>
+              <design:displaySize>166</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
     <themes>
         <theme name="defaultTheme" id="4"/>
     </themes>
