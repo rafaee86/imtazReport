@@ -226,7 +226,8 @@ FROM
 				STATUS_FLAG IS TRUE 
 		) PDT 
 	WHERE 
-		CRD.PKID = ? 
+		R.STATUS_FLAG IS TRUE 
+		AND CRD.PKID = ? 
 ) X 
 ORDER BY X.STUDENT_NO ASC]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
