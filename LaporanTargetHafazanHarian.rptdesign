@@ -14,18 +14,6 @@
             <property name="name">rowFetchSize</property>
             <property name="id">7</property>
         </structure>
-        <structure>
-            <property name="name">queryText</property>
-            <property name="id">61</property>
-        </structure>
-        <structure>
-            <property name="name">queryTimeOut</property>
-            <property name="id">61</property>
-        </structure>
-        <structure>
-            <property name="name">rowFetchSize</property>
-            <property name="id">61</property>
-        </structure>
     </list-property>
     <property name="units">in</property>
     <property name="iconFile">/templates/blank_report.gif</property>
@@ -65,25 +53,7 @@
             <property name="concealValue">false</property>
             <property name="controlType">text-box</property>
         </scalar-parameter>
-        <scalar-parameter name="kelas" id="62">
-            <property name="valueType">dynamic</property>
-            <property name="isRequired">true</property>
-            <property name="dataSetName">CBDataSet</property>
-            <expression name="valueExpr" type="javascript">dataSetRow["PKID"]</expression>
-            <expression name="labelExpr" type="javascript">dataSetRow["FULLNAME"]</expression>
-            <expression name="sortByColumn">dataSetRow["FULLNAME"]</expression>
-            <property name="sortDirection">asc</property>
-            <property name="dataType">integer</property>
-            <property name="distinct">true</property>
-            <list-property name="selectionList"/>
-            <property name="paramType">simple</property>
-            <property name="controlType">list-box</property>
-            <property name="mustMatch">false</property>
-            <property name="fixedOrder">false</property>
-            <structure name="format">
-                <property name="category">Unformatted</property>
-            </structure>
-        </scalar-parameter>
+        <scalar-parameter name="classRoom" id="68" extends="header.classRoom"/>
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="MyDataSource" id="6"
@@ -159,7 +129,7 @@
                 </structure>
                 <structure>
                     <property name="name">kelas</property>
-                    <property name="paramName">kelas</property>
+                    <property name="paramName">classRoom</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">-1</property>
@@ -438,114 +408,6 @@ WHERE
   </design:ResultSets>
 </model:DesignValues>]]></xml-property>
         </oda-data-set>
-        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="CBDataSet" id="61">
-            <list-property name="columnHints">
-                <structure>
-                    <property name="columnName">PKID</property>
-                    <text-property name="displayName">PKID</text-property>
-                    <text-property name="heading">PKID</text-property>
-                </structure>
-                <structure>
-                    <property name="columnName">FULLNAME</property>
-                    <text-property name="displayName">FULLNAME</text-property>
-                    <text-property name="heading">FULLNAME</text-property>
-                </structure>
-            </list-property>
-            <structure name="cachedMetaData">
-                <list-property name="resultSet">
-                    <structure>
-                        <property name="position">1</property>
-                        <property name="name">PKID</property>
-                        <property name="dataType">integer</property>
-                    </structure>
-                    <structure>
-                        <property name="position">2</property>
-                        <property name="name">FULLNAME</property>
-                        <property name="dataType">string</property>
-                    </structure>
-                </list-property>
-            </structure>
-            <property name="dataSource">MyDataSource</property>
-            <list-property name="resultSet">
-                <structure>
-                    <property name="position">1</property>
-                    <property name="name">PKID</property>
-                    <property name="nativeName">pkid</property>
-                    <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
-                </structure>
-                <structure>
-                    <property name="position">2</property>
-                    <property name="name">FULLNAME</property>
-                    <property name="nativeName">name</property>
-                    <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
-                </structure>
-            </list-property>
-            <xml-property name="queryText"><![CDATA[SELECT 
-	CRD.PKID, 
-	CRD.NAME AS FULLNAME 
-FROM 
-	CLASS_ROOM_DETAIL CRD 
-WHERE 
-	CRD.STATUS_FLAG = TRUE 
-	AND CRD.CLASS_ROOM = 'HAFAZAN'
-ORDER BY 
-	CRD.NAME ASC]]></xml-property>
-            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
-<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
-  <Version>2.0</Version>
-  <design:ResultSets derivedMetaData="true">
-    <design:resultSetDefinitions>
-      <design:resultSetColumns>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:identifier>
-              <design:name>pkid</design:name>
-              <design:position>1</design:position>
-            </design:identifier>
-            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
-            <design:precision>11</design:precision>
-            <design:scale>0</design:scale>
-            <design:nullability>NotNullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>PKID</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>PKID</design:label>
-            <design:formattingHints>
-              <design:displaySize>11</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-        <design:resultColumnDefinitions>
-          <design:attributes>
-            <design:identifier>
-              <design:name>name</design:name>
-              <design:position>2</design:position>
-            </design:identifier>
-            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
-            <design:precision>50</design:precision>
-            <design:scale>0</design:scale>
-            <design:nullability>NotNullable</design:nullability>
-            <design:uiHints>
-              <design:displayName>FULLNAME</design:displayName>
-            </design:uiHints>
-          </design:attributes>
-          <design:usageHints>
-            <design:label>FULLNAME</design:label>
-            <design:formattingHints>
-              <design:displaySize>50</design:displaySize>
-            </design:formattingHints>
-          </design:usageHints>
-        </design:resultColumnDefinitions>
-      </design:resultSetColumns>
-      <design:criteria/>
-    </design:resultSetDefinitions>
-  </design:ResultSets>
-</model:DesignValues>]]></xml-property>
-        </oda-data-set>
     </data-sets>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
@@ -582,7 +444,7 @@ ORDER BY
                     <text-property name="displayName">DAILY_TARGET</text-property>
                     <expression name="expression" type="javascript">if(BirtStr.charLength(dataSetRow["DAILY_TARGET"]) > 0){&#13;
 	var strArr = new String(dataSetRow["DAILY_TARGET"]).split('/');&#13;
-	'Juz ' + strArr[0] + ' Muka ' + strArr[1] + ' Baris ' + strArr[2];&#13;
+	strArr[0] + ' Juz ' + strArr[1] + ' Muka ' + strArr[2] + ' Baris';&#13;
 }</expression>
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
@@ -604,7 +466,7 @@ ORDER BY
                     <text-property name="displayName">TOTAL_DAILY_TARGET</text-property>
                     <expression name="expression" type="javascript">if(BirtStr.charLength(dataSetRow["TOTAL_DAILY_TARGET"]) > 0){&#13;
 	var strArr = new String(dataSetRow["TOTAL_DAILY_TARGET"]).split('/');&#13;
-	'Juz ' + strArr[0] + ' Muka ' + strArr[1] + ' Baris ' + strArr[2];&#13;
+	strArr[0] + ' Juz ' + strArr[1] + ' Muka ' + strArr[2] + ' Baris';&#13;
 }</expression>
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
@@ -614,7 +476,7 @@ ORDER BY
                     <text-property name="displayName">TOTAL_MEMORIZE</text-property>
                     <expression name="expression" type="javascript">if(BirtStr.charLength(dataSetRow["TOTAL_MEMORIZE"]) > 0){&#13;
 	var strArr = new String(dataSetRow["TOTAL_MEMORIZE"]).split('/');&#13;
-	'Juz ' + strArr[0] + ' Muka ' + strArr[1] + ' Baris ' + strArr[2];&#13;
+	strArr[0] + ' Juz ' + strArr[1] + ' Muka ' + strArr[2] + ' Baris';&#13;
 }</expression>
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
@@ -624,7 +486,7 @@ ORDER BY
                     <text-property name="displayName">TOTAL_BALANCE</text-property>
                     <expression name="expression" type="javascript">if(BirtStr.charLength(dataSetRow["TOTAL_BALANCE"]) > 0){&#13;
 	var strArr = new String(dataSetRow["TOTAL_BALANCE"]).split('/');&#13;
-	'Juz ' + strArr[0] + ' Muka ' + strArr[1] + ' Baris ' + strArr[2];&#13;
+	strArr[0] + ' Juz ' + strArr[1] + ' Muka ' + strArr[2] + ' Baris';&#13;
 }</expression>
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
